@@ -1,0 +1,38 @@
+@model CourseViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 style="text-align: center;"><b>Kurs Bilgileri Güncelle</b></h1>
+<hr>
+<div class="row">
+    <div class="col-8">
+        <form asp-controller="Course" asp-action="Edit" method="post">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" asp-for="CourseId" />
+            <div class="mb-3">
+                <label asp-for="CourseName"></label>
+                <input asp-for="CourseName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="TeacherId" class="form-label">Öğretmen</label>
+                <select asp-for="TeacherId" asp-items="ViewBag.Teachers" class="form-select">
+                    <option value="">Seçiniz</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-secondary"> Kurs Bilgieri Güncelle</button>
+        </form>
+    </div>
+    <div class="col-4">
+        <h4>Öğrenciler</h4>
+        <hr>
+        <ul>
+            @foreach (var item in Model.RegisterCourses)
+            {
+                <li>
+                    @item.Student.NameSurname
+                </li>
+            }
+        </ul>
+
+</div>

@@ -1,0 +1,18 @@
+@model MeetingInfo;
+@{
+    ViewBag.Title = "Toplantı Başvuru";
+    Layout = "_Layout2";
+    // Set the layout for all views in the application
+    // You can change this to a different layout if needed
+    // Layout = "_AnotherLayout";
+}
+<h1 class="h4">@ViewData["Selamlama"], @ViewData["Username"]</h1>
+<h2>Toplantı Katılım Durumunuzu  Bildiriniz.</h2>
+<div class="card my-2">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Location</li>
+        <li class="list-group-item">@Model.Start.ToString("dd/MM/yyyy HH:mm:ss") Tarihinde gerçekleşecek</li>
+        <li class="list-group-item">@Model.NumberOfPeople Katılımcı</li>
+    </ul>    
+
+<a class="btn btn-sm btn-outline-primary" href="/meeting/apply">Başvuru Yap</a>

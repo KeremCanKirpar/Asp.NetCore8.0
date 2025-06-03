@@ -1,0 +1,22 @@
+@model RegisterCourse
+@{
+    ViewData["Title"] = "Create";
+}
+<h1 style="text-align: center;"><b>Kursu Kayıt Ekle</b></h1>
+<hr>
+<form asp-controller="RegisterCourse" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="StudentId" class="form-label">Öğrenci</label>
+        <select asp-for="StudentId" asp-items="ViewBag.Students" class="form-form-select">
+            <option value="">Seçiniz</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label">Kurs</label>
+        <select asp-for="CourseId" asp-items="ViewBag.Courses" class="form-form-select">
+            <option value="">Seçiniz</option>
+        </select>
+    </div>
+    
+    <button type="submit" class="btn btn-secondary"> Öğrenci Ekle</button>
+</form>

@@ -1,0 +1,44 @@
+@page "/EmployeeList"
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using RazorPagesExample.Models
+@using RazorPagesExample.Pages.Employees
+@using RazorPagesExample.Repository.Abstract
+@model IndexModel
+
+
+<h1>Employees</h1>
+<div class="row ">
+    @foreach (var emp in Model.EmployeeList)
+    {
+        <div class="col-md-3 mb-2">
+            <div class="card">
+                <img src="~/img/@emp.Photo" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">@emp.Name</h5>
+                    <p class="card-text">@emp.Department</p>
+                    <a asp-page="/employees/details" asp-route-id="@emp.Id" class="btn btn-primary">Details</a>
+                    <a asp-page="/employees/Edit" asp-route-id="@emp.Id" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    public class IndexModel : PageModel
+    {
+        public IEnumerable<Employee> EmployeeList = [];
+        private readonly IEmployeesRepository _employeeRepository;
+
+
+        public IndexModel(IEmployeesRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
+        public void OnGet()
+        {
+            EmployeeList = _employeeRepository.GetAll();
+        }
+    }
+}
